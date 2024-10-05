@@ -2,4 +2,4 @@
 my first repository to practice github
 I will be git master
 ok?
-Git will be very easy for me in a year.
+Git will be very easy for me in a year!
