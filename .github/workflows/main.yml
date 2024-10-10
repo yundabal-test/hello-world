@@ -38,6 +38,5 @@ jobs:
           git push origin main
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: github_token
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} main
