@@ -36,6 +36,10 @@ jobs:
           set +e
           git add CHANGELOG.md
           git commit -m "Update changelog"
+          git push https://$USERNAME:$REPO_KEY@github.com/yundabal-test/hello-world.git
+        env:
+          REPO_KEY: ${{secrets.PAT_TOKEN}}
+          USERNAME: github-actions[bot]
 
       - name: Push changes
         uses: ad-m/github-push-action@master
