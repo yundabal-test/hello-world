@@ -1,6 +1,6 @@
 name: Action Test
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   changelog:
@@ -24,11 +24,14 @@ jobs:
           OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
 
+      - name: Checkout main branch
+        run: |
+          git checkout main
+
       - name: Commit
         run: |
-          git config remote.origin.url 'https://github_token@github.com/yundabal-test/hello-world'
-          git config --local user.email "spook@gmail.com"
-          git config --local user.name "spook"
+          git config --local user.email "yundabal@gmail.com"
+          git config --local user.name "yundabal"
           set +e
           git add CHANGELOG.md
           git commit -m "Update changelog"
