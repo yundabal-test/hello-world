@@ -35,7 +35,6 @@ jobs:
           set +e
           git add CHANGELOG.md
           git commit -m "Update changelog"
-          git push origin main
 
       - name: Push changes
         run: |
