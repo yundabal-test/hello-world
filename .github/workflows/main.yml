@@ -26,10 +26,15 @@ jobs:
 
       - name: Commit
         run: |
-          git checkout main
-          git config user.name 'yundabal'
-          git config user.email 'yundabal@gmail.com'
+          git config remote.origin.url 'https://github_token@github.com/yundabal-test/hello-world'
+          git config --local user.email "spook@gmail.com"
+          git config --local user.name "spook"
           set +e
           git add CHANGELOG.md
           git commit -m "Update changelog"
           git push origin main
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: github_token
