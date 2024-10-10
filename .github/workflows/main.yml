@@ -7,14 +7,13 @@ jobs:
     name: Generate changelog
     runs-on: ubuntu-latest
     permissions:
-      persist-credentials: false
       contents: write
       packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Generate changelog
@@ -32,14 +31,12 @@ jobs:
 
       - name: Commit
         run: |
-          git config --local user.email "yundabal@gmail.com"
-          git config --local user.name "yundabal"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           set +e
           git add CHANGELOG.md
           git commit -m "Update changelog"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PAT_TOKEN }}
-          branch: ${{ github.ref }}
+          git push https://$USERNAME:$REPO_KEY@github.com/yundabal-test/hello-world.git main
+        env:
+          REPO_KEY: ${{secrets.PAT_TOKEN}}
+          USERNAME: github-actions[bot]
