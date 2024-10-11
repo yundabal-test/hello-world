@@ -27,6 +27,7 @@ jobs:
           args: --verbose
         env:
           OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
 
       - name: Commit changes
         env:
