@@ -26,8 +26,9 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: fixtures/cliff.toml
-          args: --verbose --prepend CHANGELOG.md -u
+          args: --verbose
         env:
+          OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_REF_NAME: ${{ github.ref_name }}
           version: ${{ github.ref_name }}
