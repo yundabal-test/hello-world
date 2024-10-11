@@ -25,7 +25,7 @@ jobs:
       - name: Generate changelog
         uses: orhun/git-cliff-action@v4
         with:
-          config: cliff.toml
+          config: fixtures/cliff.toml
           args: --verbose
         env:
           OUTPUT: CHANGELOG.md
