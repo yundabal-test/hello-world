@@ -20,14 +20,18 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: Modify README.md
-        run: |
-          echo "## TEST release branch :  ${{ github.ref_name }}" >> README.md
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: CHANGELOG.md
 
       - name: Commit changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add README.md
-          git commit -m "Update README.md : ${{ github.ref_name }}"
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG.md : ${{ github.ref_name }}"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.ref_name }}
