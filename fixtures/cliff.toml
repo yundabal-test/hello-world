@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 """
 # template for the changelog body
 body = """
-{% if version %}## [{{ version | regex_replace(pat="release/QA-", rep="") }}] - {{ timestamp | date(format="%Y-%m-%d") }}\n{% else %}## [unreleased]\n{% endif %}
+{% if GITHUB_REF_NAME %}## [{{ GITHUB_REF_NAME | replace("release/QA-", "") }}] - {{ timestamp | date(format="%Y-%m-%d") }}\n{% else %}## [unreleased]\n{% endif %}
 
 ### Breaking Changes
 {% for commit in commits %}{% set breaking_changes_exist = false %}{% for footer in commit.footers %}{% if footer.breaking %}- {{ footer.value | upper_first }}\n{% endif %}{% endfor %}{% endfor %}
